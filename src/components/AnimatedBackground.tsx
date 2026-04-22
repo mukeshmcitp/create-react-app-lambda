@@ -13,7 +13,7 @@ const AnimatedBackground = () => (
   <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
     {/* Grid pattern */}
     <div
-      className="absolute inset-0 opacity-[0.03]"
+      className="absolute inset-0 opacity-[0.04]"
       style={{
         backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
         backgroundSize: "60px 60px",
@@ -28,7 +28,7 @@ const AnimatedBackground = () => (
         fill="none"
         stroke="hsl(var(--primary))"
         strokeWidth={0.5}
-        className="absolute opacity-[0.06]"
+        className="absolute opacity-[0.08]"
         style={{ left: icon.x, top: icon.y, width: icon.size, height: icon.size }}
         animate={{ y: [0, -20, 0], rotate: [0, 5, -5, 0] }}
         transition={{ duration: 8, repeat: Infinity, delay: icon.delay, ease: "easeInOut" }}
@@ -37,16 +37,16 @@ const AnimatedBackground = () => (
       </motion.svg>
     ))}
 
-    {/* Gradient orbs */}
+    {/* Gradient orbs - lighter for light theme */}
     <motion.div
       className="absolute w-[500px] h-[500px] rounded-full"
-      style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.06), transparent 70%)", left: "10%", top: "20%" }}
+      style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.12), transparent 70%)", left: "10%", top: "20%" }}
       animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
       transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
     />
     <motion.div
       className="absolute w-[400px] h-[400px] rounded-full"
-      style={{ background: "radial-gradient(circle, hsl(var(--secondary) / 0.05), transparent 70%)", right: "5%", bottom: "10%" }}
+      style={{ background: "radial-gradient(circle, hsl(var(--secondary) / 0.10), transparent 70%)", right: "5%", bottom: "10%" }}
       animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
       transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 3 }}
     />

@@ -102,7 +102,7 @@ const ToolsSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.05 }}
-            className="group p-6 rounded-xl bg-card glow-border card-hover"
+            className="group p-6 rounded-xl bg-card/80 border border-border shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300"
           >
             <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${c.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
               <c.icon size={22} className="text-foreground" />

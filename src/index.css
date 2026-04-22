@@ -6,48 +6,57 @@
 
 @layer base {
   :root {
-    --background: 230 25% 7%;
-    --foreground: 210 40% 96%;
+    /* Dark Navy Tech Theme */
+    /* Backgrounds */
+    --background: 218 64% 14%;          /* #0A1E3F dark navy */
+    --foreground: 0 0% 100%;            /* white text */
 
-    --card: 230 25% 10%;
-    --card-foreground: 210 40% 96%;
+    --card: 218 55% 18%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 230 25% 10%;
-    --popover-foreground: 210 40% 96%;
+    --popover: 218 60% 16%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 230 25% 7%;
+    /* Primary = Deep Blue */
+    --primary: 215 84% 47%;             /* #1565D8 */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 260 60% 55%;
-    --secondary-foreground: 210 40% 98%;
+    /* Secondary = Sky Blue accent */
+    --secondary: 197 100% 50%;          /* #00B2FF */
+    --secondary-foreground: 218 64% 14%;
 
-    --muted: 230 20% 15%;
-    --muted-foreground: 215 20% 62%;
+    --muted: 218 45% 22%;
+    --muted-foreground: 210 30% 75%;
 
-    --accent: 217 91% 60%;
-    --accent-foreground: 210 40% 98%;
+    /* Accent = Orange (DevOps loop / CTAs) */
+    --accent: 30 100% 50%;              /* #FF8A00 */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 230 20% 16%;
-    --input: 230 20% 16%;
-    --ring: 217 91% 60%;
+    --border: 215 50% 30%;
+    --input: 215 50% 28%;
+    --ring: 197 100% 50%;
 
     --radius: 0.75rem;
 
-    --gradient-start: 217 91% 60%;
-    --gradient-end: 260 60% 55%;
-    --glow: 217 91% 60%;
+    /* Light section background (#F2F6FB) for alternating sections */
+    --surface-light: 213 50% 97%;
+    --surface-light-foreground: 218 64% 14%;
 
-    --sidebar-background: 230 25% 9%;
-    --sidebar-foreground: 210 40% 96%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 230 25% 7%;
-    --sidebar-accent: 230 20% 15%;
-    --sidebar-accent-foreground: 210 40% 96%;
-    --sidebar-border: 230 20% 16%;
-    --sidebar-ring: 217 91% 60%;
+    --gradient-start: 218 64% 14%;
+    --gradient-end: 215 84% 47%;
+    --glow: 197 100% 50%;
+
+    --sidebar-background: 218 60% 12%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 215 84% 47%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 218 50% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 215 50% 25%;
+    --sidebar-ring: 197 100% 50%;
   }
 }
 
@@ -61,12 +70,12 @@
   body {
     @apply bg-background text-foreground font-sans;
     font-family: 'Inter', sans-serif;
-    background-image: 
-      radial-gradient(ellipse at 15% 5%, hsl(217 91% 60% / 0.08) 0%, transparent 40%),
-      radial-gradient(ellipse at 85% 15%, hsl(260 60% 55% / 0.06) 0%, transparent 35%),
-      radial-gradient(ellipse at 50% 50%, hsl(217 91% 60% / 0.03) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 90%, hsl(260 60% 55% / 0.07) 0%, transparent 40%),
-      radial-gradient(ellipse at 10% 80%, hsl(217 91% 60% / 0.05) 0%, transparent 35%);
+    background-image:
+      radial-gradient(ellipse at 15% 5%, hsl(215 84% 35% / 0.45) 0%, transparent 45%),
+      radial-gradient(ellipse at 85% 15%, hsl(197 100% 50% / 0.18) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 50%, hsl(218 64% 14% / 0.3) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 90%, hsl(30 100% 50% / 0.10) 0%, transparent 40%),
+      radial-gradient(ellipse at 10% 80%, hsl(215 84% 47% / 0.25) 0%, transparent 40%);
     background-attachment: fixed;
   }
   h1, h2, h3, h4, h5, h6 {
@@ -80,27 +89,67 @@
 @layer utilities {
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    background-image: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)));
+  }
+  .gradient-text-warm {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--accent)));
   }
   .gradient-bg {
     background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
   }
+  .gradient-bg-hero {
+    background-image: linear-gradient(135deg, hsl(218 64% 10%) 0%, hsl(215 84% 25%) 60%, hsl(215 84% 47%) 100%);
+  }
   .gradient-bg-subtle {
-    background-image: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.1));
+    background-image: linear-gradient(135deg, hsl(var(--primary) / 0.18), hsl(var(--secondary) / 0.18));
+  }
+  .gradient-bg-warm {
+    background-image: linear-gradient(135deg, hsl(var(--accent)), hsl(15 100% 55%));
   }
   .glow-border {
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.15), inset 0 0 20px hsl(var(--primary) / 0.05);
-    border: 1px solid hsl(var(--primary) / 0.2);
+    box-shadow: 0 0 20px hsl(var(--secondary) / 0.25), inset 0 0 20px hsl(var(--secondary) / 0.06);
+    border: 1px solid hsl(var(--secondary) / 0.35);
+  }
+  .glow-text {
+    text-shadow: 0 0 20px hsl(var(--secondary) / 0.6);
   }
   .card-hover {
     @apply transition-all duration-300;
   }
   .card-hover:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px hsl(var(--primary) / 0.15);
-    border-color: hsl(var(--primary) / 0.4);
+    box-shadow: 0 12px 40px hsl(var(--secondary) / 0.18);
+    border-color: hsl(var(--secondary) / 0.5);
   }
   .section-padding {
     @apply py-20 md:py-28 px-4 md:px-8;
   }
+  .surface-light {
+    background-color: hsl(var(--surface-light));
+    color: hsl(var(--surface-light-foreground));
+  }
+  /* Subtle circuit/grid pattern overlay */
+  .circuit-grid {
+    background-image:
+      linear-gradient(hsl(var(--secondary) / 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--secondary) / 0.08) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+}
+
+@layer components {
+  /* DevOps infinity loop animation */
+  @keyframes loop-dash {
+    to { stroke-dashoffset: -200; }
+  }
+  .loop-dash {
+    animation: loop-dash 6s linear infinite;
+  }
+  @keyframes orbit {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .orbit-slow { animation: orbit 40s linear infinite; }
+  .orbit-rev { animation: orbit 60s linear infinite reverse; }
 }

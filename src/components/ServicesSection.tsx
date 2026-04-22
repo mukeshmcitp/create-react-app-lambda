@@ -43,9 +43,9 @@ const ServicesSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="p-8 rounded-xl bg-card glow-border card-hover text-center"
+            className="p-8 rounded-xl bg-card/80 border border-border shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 text-center"
           >
-            <div className="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/20">
+            <div className="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/15">
               <s.icon size={28} className="text-primary-foreground" />
             </div>
             <h3 className="text-xl font-bold text-foreground mb-4">{s.title}</h3>

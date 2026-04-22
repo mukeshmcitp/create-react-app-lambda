@@ -15,17 +15,18 @@ import BlogSection from "@/components/BlogSection";
 import ContactSection from "@/components/ContactSection";
 import FooterSection from "@/components/FooterSection";
 import ContactPaymentWidget from "@/components/ContactPaymentWidget";
-import WhatsAppTicker from "@/components/WhatsAppTicker";
+import CourseCatalogSection from "@/components/CourseCatalogSection";
+import CartDrawer from "@/components/CartDrawer";
 
 const Index = () => (
   <div className="min-h-screen bg-background relative">
     <PageLoader />
     <AnimatedBackground />
-    <WhatsAppTicker />
     <Navbar />
     <HeroSection />
     <AboutSection />
     <TrainingSection />
+    <CourseCatalogSection />
     <ToolsSection />
     <AIToolsSection />
     <YouTubeSection />
@@ -37,6 +38,7 @@ const Index = () => (
     <ContactSection />
     <FooterSection />
     <ContactPaymentWidget />
+    <CartDrawer />
   </div>
 );
 

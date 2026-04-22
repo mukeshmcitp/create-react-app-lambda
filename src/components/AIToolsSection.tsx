@@ -90,8 +90,8 @@ const AIToolsSection = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="text-center p-6 rounded-xl glow-border bg-card/50 backdrop-blur-sm"
-            >
+            className="text-center p-6 rounded-xl border border-border bg-card/60 shadow-sm"
+          >
               <div className="text-3xl md:text-4xl font-black gradient-text">{s.value}</div>
               <div className="text-sm text-muted-foreground mt-1">{s.label}</div>
             </motion.div>
@@ -109,8 +109,8 @@ const AIToolsSection = () => {
               transition={{ delay: i * 0.08 }}
               onHoverStart={() => setActiveCard(i)}
               onHoverEnd={() => setActiveCard(null)}
-              className="group relative p-6 rounded-xl bg-card glow-border card-hover cursor-pointer"
-            >
+            className="group relative p-6 rounded-xl bg-card/80 border border-border shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 cursor-pointer"
+          >
               {/* Hover glow */}
               {activeCard === i && (
                 <motion.div

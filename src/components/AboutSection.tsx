@@ -26,7 +26,7 @@ const AboutSection = () => (
           <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
             ITIN Abroad Service is a global DevOps training and consulting company dedicated to bridging the gap between theory and real-world implementation. We offer live projects, mentorship, and job-oriented training.
           </p>
-          <div className="p-5 rounded-xl glow-border bg-card/50">
+          <div className="p-5 rounded-xl border border-border bg-card/60 shadow-sm">
             <p className="text-foreground font-medium italic">
               "Our mission is to empower professionals with industry-ready DevOps skills through hands-on training, live project experience, and continuous support."
             </p>
@@ -41,7 +41,7 @@ const AboutSection = () => (
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="flex items-start gap-4 p-4 rounded-xl bg-card/50 glow-border card-hover"
+              className="flex items-start gap-4 p-4 rounded-xl border border-border bg-card/60 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300"
             >
               <div className="p-2.5 rounded-lg gradient-bg shrink-0">
                 <f.icon size={20} className="text-primary-foreground" />

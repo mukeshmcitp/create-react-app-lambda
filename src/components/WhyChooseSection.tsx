@@ -30,7 +30,7 @@ const WhyChooseSection = () => (
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="flex items-center gap-3 p-4 rounded-xl bg-card glow-border card-hover"
+                className="flex items-center gap-3 p-4 rounded-xl border border-border bg-card/70 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300"
               >
                 <r.icon className="text-primary shrink-0" size={22} />
                 <span className="text-sm font-medium text-foreground">{r.title}</span>
@@ -52,7 +52,7 @@ const WhyChooseSection = () => (
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex items-center gap-4 p-5 rounded-xl bg-card glow-border card-hover"
+                className="flex items-center gap-4 p-5 rounded-xl border border-border bg-card/70 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center text-primary-foreground font-bold text-sm">
                   {String(i + 1).padStart(2, "0")}

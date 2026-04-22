@@ -37,16 +37,16 @@ const YouTubeSection = () => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         whileHover={{ scale: 1.01 }}
-        className="block rounded-xl overflow-hidden glow-border bg-card mb-10 group"
+        className="block rounded-xl overflow-hidden border border-border bg-card/80 shadow-sm mb-10 group"
       >
-        <div className="relative aspect-video bg-gradient-to-br from-primary/20 via-background to-destructive/20 flex items-center justify-center">
+        <div className="relative aspect-video bg-gradient-to-br from-primary/15 via-background to-secondary/15 flex items-center justify-center">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.15),transparent_70%)]" />
           <div className="relative z-10 text-center px-6">
             <motion.div
               whileHover={{ scale: 1.1 }}
-              className="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-destructive/90 mb-6 shadow-2xl group-hover:bg-destructive transition-colors"
+              className="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-red-500/90 mb-6 shadow-2xl group-hover:bg-red-500 transition-colors"
             >
-              <PlayCircle size={56} className="text-destructive-foreground" />
+              <PlayCircle size={56} className="text-white" />
             </motion.div>
             <h3 className="text-2xl md:text-4xl font-bold mb-3">
               Global DevOps Lab — All Playlists

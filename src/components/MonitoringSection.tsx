@@ -35,7 +35,7 @@ const MonitoringSection = () => (
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
             whileHover={{ y: -6, scale: 1.03 }}
-            className="p-6 rounded-xl bg-card glow-border card-hover text-center"
+            className="p-6 rounded-xl border border-border bg-card/70 shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 text-center"
           >
             <c.icon className="text-primary mx-auto mb-3" size={28} />
             <div className="text-3xl font-black gradient-text mb-1">
@@ -51,7 +51,7 @@ const MonitoringSection = () => (
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="p-6 md:p-8 rounded-xl bg-card glow-border"
+        className="p-6 md:p-8 rounded-xl border border-border bg-card/70 shadow-sm"
       >
         <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
           <h3 className="font-bold text-foreground">Live Dashboard</h3>

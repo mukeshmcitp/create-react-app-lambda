@@ -24,7 +24,7 @@ const BlogSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.05 }}
-            className="group p-6 rounded-xl bg-card glow-border card-hover cursor-pointer"
+            className="group p-6 rounded-xl bg-card/80 border border-border shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 cursor-pointer"
           >
             <span className="text-xs font-semibold text-primary uppercase">{p.category}</span>
             <h3 className="text-foreground font-bold mt-2 mb-3 group-hover:text-primary transition-colors">{p.title}</h3>

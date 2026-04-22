@@ -1,17 +1,23 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu, DropdownMenuContent, DropdownMenuItem,
+  DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { motion } from "framer-motion";
 import {
-  Search, Filter, BookOpen, Clock, Star, Users, Play, ChevronRight,
-  GraduationCap, TrendingUp, Award, Bell, User, LogOut, Menu, X,
-  Code, Cloud, Shield, Terminal, GitBranch, Container
+  Search, BookOpen, Clock, Star, Users, Play, ChevronRight,
+  GraduationCap, TrendingUp, Award, Bell, User, LogOut, Menu,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
 
 const categories = ["All", "DevOps", "Cloud", "CI/CD", "Kubernetes", "Security", "AI DevOps"];
 
@@ -32,9 +38,26 @@ const stats = [
 ];
 
 const LMSDashboard = () => {
+  const navigate = useNavigate();
+  const { user, signOut } = useAuth();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [profile, setProfile] = useState<{ full_name: string | null; avatar_url: string | null } | null>(null);
+
+  useEffect(() => {
+    if (!user) return;
+    supabase.from("profiles").select("full_name, avatar_url").eq("id", user.id).maybeSingle()
+      .then(({ data }) => setProfile(data));
+  }, [user]);
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate("/");
+  };
+
+  const displayName = profile?.full_name || user?.email?.split("@")[0] || "Student";
+  const initials = displayName.split(" ").map(s => s[0]).slice(0, 2).join("").toUpperCase();
 
   const filtered = courses.filter(c =>
     (selectedCategory === "All" || c.category === selectedCategory) &&
@@ -51,26 +74,30 @@ const LMSDashboard = () => {
         </div>
         <nav className="p-4 space-y-1">
           {[
-            { icon: BookOpen, label: "My Courses", active: true },
-            { icon: Play, label: "Continue Learning" },
-            { icon: Award, label: "Certificates" },
-            { icon: Star, label: "Bookmarks" },
-            { icon: Users, label: "Discussion Forum" },
-            { icon: Bell, label: "Notifications" },
-            { icon: User, label: "Profile" },
+            { icon: BookOpen, label: "My Courses", active: true, to: "#" },
+            { icon: Play, label: "Continue Learning", to: "#" },
+            { icon: Award, label: "Certificates", to: "#" },
+            { icon: Star, label: "Bookmarks", to: "#" },
+            { icon: Users, label: "Discussion Forum", to: "#" },
+            { icon: Bell, label: "Notifications", to: "#" },
+            { icon: User, label: "Profile", to: "/profile" },
           ].map(item => (
-            <button key={item.label} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${item.active ? 'bg-primary/10 text-primary font-medium' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'}`}>
+            <Link key={item.label} to={item.to}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${item.active ? 'bg-primary/10 text-primary font-medium' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'}`}>
               <item.icon className="w-4 h-4" />
               {item.label}
-            </button>
+            </Link>
           ))}
         </nav>
-        <div className="absolute bottom-4 left-4 right-4">
+        <div className="absolute bottom-4 left-4 right-4 space-y-1">
           <Link to="/">
             <Button variant="ghost" size="sm" className="w-full justify-start text-muted-foreground">
               <LogOut className="w-4 h-4 mr-2" /> Back to Website
             </Button>
           </Link>
+          <Button variant="ghost" size="sm" onClick={handleLogout} className="w-full justify-start text-destructive hover:text-destructive">
+            <LogOut className="w-4 h-4 mr-2" /> Sign Out
+          </Button>
         </div>
       </aside>
 
@@ -86,14 +113,36 @@ const LMSDashboard = () => {
           </div>
           <div className="flex items-center gap-3">
             <Button variant="ghost" size="icon"><Bell className="w-5 h-5" /></Button>
-            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-sm font-bold">JS</div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                  <Avatar className="w-8 h-8">
+                    <AvatarImage src={profile?.avatar_url ?? undefined} />
+                    <AvatarFallback className="bg-primary/20 text-primary text-sm font-bold">{initials}</AvatarFallback>
+                  </Avatar>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuLabel>
+                  <div className="font-medium">{displayName}</div>
+                  <div className="text-xs text-muted-foreground font-normal truncate">{user?.email}</div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => navigate("/profile")}>
+                  <User className="w-4 h-4 mr-2" /> Profile Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogout} className="text-destructive">
+                  <LogOut className="w-4 h-4 mr-2" /> Sign Out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </header>
 
         <div className="p-4 md:p-6 space-y-6">
           {/* Welcome */}
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-            <h2 className="text-2xl font-bold text-foreground">Welcome back, John! 👋</h2>
+            <h2 className="text-2xl font-bold text-foreground">Welcome back, {displayName.split(" ")[0]}! 👋</h2>
             <p className="text-muted-foreground mt-1">Continue your DevOps journey. You're making great progress!</p>
           </motion.div>
 

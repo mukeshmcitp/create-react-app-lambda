@@ -36,10 +36,10 @@ const ContactPaymentWidget = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="w-[320px] rounded-2xl bg-card border border-border shadow-2xl overflow-hidden glow-border"
+            className="w-[320px] rounded-2xl bg-card/95 border border-border shadow-2xl overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-primary to-primary/70 p-4 text-primary-foreground">
+            <div className="bg-gradient-to-r from-primary to-secondary p-4 text-primary-foreground">
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="font-bold text-base">Quick Contact & Pay</h4>
@@ -57,7 +57,7 @@ const ContactPaymentWidget = () => {
 
             <div className="p-4 space-y-4">
               {/* Phone with copy */}
-              <div className="flex items-center justify-between gap-2 rounded-lg border border-border bg-background/50 px-3 py-2">
+              <div className="flex items-center justify-between gap-2 rounded-lg border border-border bg-background/80 px-3 py-2">
                 <div className="flex items-center gap-2 min-w-0">
                   <Phone size={16} className="text-primary shrink-0" />
                   <span className="font-mono text-sm truncate">{PHONE}</span>
@@ -67,11 +67,11 @@ const ContactPaymentWidget = () => {
                   className="p-1.5 rounded-md hover:bg-muted transition-colors"
                   aria-label="Copy phone number"
                 >
-                  {copied === "Phone number" ? (
-                    <Check size={14} className="text-green-500" />
-                  ) : (
-                    <Copy size={14} className="text-muted-foreground" />
-                  )}
+                    {copied === "Phone number" ? (
+                      <Check size={14} className="text-green-600" />
+                    ) : (
+                      <Copy size={14} className="text-muted-foreground" />
+                    )}
                 </button>
               </div>
 
@@ -94,7 +94,7 @@ const ContactPaymentWidget = () => {
                 <div className="grid grid-cols-2 gap-2">
                   <a
                     href={gpayLink}
-                    className="flex flex-col items-center justify-center gap-1 rounded-lg border border-border bg-background/50 hover:bg-muted py-3 transition-all hover:scale-[1.03] hover:border-primary"
+                    className="flex flex-col items-center justify-center gap-1 rounded-lg border border-border bg-background/80 hover:bg-muted py-3 transition-all hover:scale-[1.03] hover:border-primary"
                   >
                     <span className="font-bold text-base bg-gradient-to-r from-[#4285F4] via-[#EA4335] to-[#FBBC05] bg-clip-text text-transparent">
                       G Pay
@@ -103,7 +103,7 @@ const ContactPaymentWidget = () => {
                   </a>
                   <a
                     href={phonepeLink}
-                    className="flex flex-col items-center justify-center gap-1 rounded-lg border border-border bg-background/50 hover:bg-muted py-3 transition-all hover:scale-[1.03] hover:border-primary"
+                    className="flex flex-col items-center justify-center gap-1 rounded-lg border border-border bg-background/80 hover:bg-muted py-3 transition-all hover:scale-[1.03] hover:border-primary"
                   >
                     <span className="font-bold text-base text-[#5f259f]">PhonePe</span>
                     <span className="text-[10px] text-muted-foreground">UPI Payment</span>
@@ -111,7 +111,7 @@ const ContactPaymentWidget = () => {
                 </div>
 
                 {/* UPI ID copy */}
-                <div className="mt-2 flex items-center justify-between gap-2 rounded-lg border border-dashed border-border bg-background/30 px-3 py-2">
+                <div className="mt-2 flex items-center justify-between gap-2 rounded-lg border border-dashed border-border bg-background/60 px-3 py-2">
                   <div className="flex flex-col min-w-0">
                     <span className="text-[10px] uppercase text-muted-foreground tracking-wider">UPI ID</span>
                     <span className="font-mono text-xs truncate">{UPI_ID}</span>
@@ -122,7 +122,7 @@ const ContactPaymentWidget = () => {
                     aria-label="Copy UPI ID"
                   >
                     {copied === "UPI ID" ? (
-                      <Check size={14} className="text-green-500" />
+                      <Check size={14} className="text-green-600" />
                     ) : (
                       <Copy size={14} className="text-muted-foreground" />
                     )}
@@ -132,7 +132,7 @@ const ContactPaymentWidget = () => {
 
               {/* Trust note */}
               <p className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
-                <ShieldCheck size={12} className="text-green-500" />
+                <ShieldCheck size={12} className="text-green-600" />
                 Secure payments via UPI (Google Pay / PhonePe)
               </p>
             </div>

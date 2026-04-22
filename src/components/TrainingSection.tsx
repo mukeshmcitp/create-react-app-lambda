@@ -46,7 +46,7 @@ const TrainingSection = () => (
               <div className="relative z-10 flex items-center justify-center w-12 h-12 rounded-full gradient-bg shrink-0 shadow-lg shadow-primary/20">
                 <s.icon size={20} className="text-primary-foreground" />
               </div>
-              <div className="p-5 rounded-xl bg-card glow-border card-hover flex-1">
+              <div className="p-5 rounded-xl border border-border bg-card/70 shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 flex-1">
                 <span className="text-xs font-bold text-primary">STEP {s.step}</span>
                 <h3 className="text-lg font-bold text-foreground mt-1">{s.title}</h3>
                 <p className="text-sm text-muted-foreground mt-1">{s.desc}</p>
@@ -55,7 +55,7 @@ const TrainingSection = () => (
 
             {/* Desktop layout */}
             <div className={`hidden md:flex items-start gap-6 w-full ${i % 2 === 0 ? "" : "flex-row-reverse"}`}>
-              <div className={`flex-1 p-5 rounded-xl bg-card glow-border card-hover ${i % 2 === 0 ? "text-right" : "text-left"}`}>
+              <div className={`flex-1 p-5 rounded-xl border border-border bg-card/70 shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 ${i % 2 === 0 ? "text-right" : "text-left"}`}>
                 <span className="text-xs font-bold text-primary">STEP {s.step}</span>
                 <h3 className="text-lg font-bold text-foreground mt-1">{s.title}</h3>
                 <p className="text-sm text-muted-foreground mt-1">{s.desc}</p>

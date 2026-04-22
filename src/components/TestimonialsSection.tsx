@@ -22,7 +22,7 @@ const TestimonialsSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="p-6 rounded-xl bg-card glow-border card-hover"
+            className="p-6 rounded-xl bg-card/80 border border-border shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300"
           >
             <div className="flex gap-1 mb-4">
               {Array.from({ length: 5 }).map((_, j) => (

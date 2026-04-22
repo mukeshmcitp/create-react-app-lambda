@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import {
   Menu, X, LogIn, GraduationCap, ChevronDown, Cloud, Boxes, Map, Briefcase,
   GitBranch, Workflow, Container, Ship, Layers, Settings, Activity,
-  Bot, BrainCircuit, Palette, Mic, BarChart3, Search, Sparkles,
+  Bot, BrainCircuit, Palette, Mic, BarChart3, Search, Sparkles, ShoppingCart,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/hooks/useCart";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   DropdownMenu,
@@ -17,6 +18,7 @@ import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "About", href: "/#about" },
+  { label: "Courses", href: "/#courses" },
   { label: "Training Videos", href: "/#videos" },
   { label: "Services", href: "/#services" },
   { label: "Blog", href: "/#blog" },
@@ -196,6 +198,7 @@ const Navbar = () => {
   const [mobileTrainingOpen, setMobileTrainingOpen] = useState(false);
   const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
   const [mobileAIToolsOpen, setMobileAIToolsOpen] = useState(false);
+  const { count, openCart } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -210,12 +213,22 @@ const Navbar = () => {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-background/95 backdrop-blur-xl border-b border-border shadow-lg shadow-background/50"
-          : "bg-background/60 backdrop-blur-md border-b border-transparent"
+          ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-lg shadow-primary/10"
+          : "bg-background/70 backdrop-blur-md border-b border-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        <Link to="/" className="flex items-center gap-3 group">
+        <Link
+          to="/"
+          onClick={(e) => {
+            if (window.location.pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+          aria-label="ITIN Abroad Service — go to homepage"
+          className="flex items-center gap-3 group cursor-pointer"
+        >
           <motion.img
             src={logo}
             alt="ITIN Abroad Service"
@@ -225,7 +238,9 @@ const Navbar = () => {
             whileHover={{ rotate: [0, -5, 5, 0] }}
             transition={{ duration: 0.4 }}
           />
-          <span className="text-xl font-bold gradient-text">ITIN Abroad Service</span>
+          <span className="text-xl font-bold gradient-text group-hover:opacity-90 transition-opacity">
+            ITIN Abroad Service
+          </span>
         </Link>
 
         <div className="hidden md:flex items-center gap-1">
@@ -277,6 +292,18 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-2">
+          <button
+            onClick={openCart}
+            aria-label="Open cart"
+            className="relative p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+          >
+            <ShoppingCart className="w-5 h-5" />
+            {count > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
+                {count}
+              </span>
+            )}
+          </button>
           <Link to="/student-login">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
@@ -293,9 +320,23 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="md:hidden flex items-center gap-1">
+          <button
+            onClick={openCart}
+            aria-label="Open cart"
+            className="relative p-2 text-foreground"
+          >
+            <ShoppingCart className="w-5 h-5" />
+            {count > 0 && (
+              <span className="absolute top-0 right-0 min-w-[18px] h-[18px] px-1 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
+                {count}
+              </span>
+            )}
+          </button>
+          <button className="text-foreground p-2" onClick={() => setOpen(!open)}>
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
